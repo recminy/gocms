@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ .Title}}我的博客</title>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/js/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css" />
+    <style>
+        html,body {
+            padding: 0;
+            margin: 0;
+            width: 100%;
+            position: absolute;
+            top:0;
+            bottom: 0;
+            background-color: #EEE;
+            overflow:hidden;
+        }
+        .login-container {
+            width: 450px;
+            height: 350px;
+            margin: 200px auto;
+            background:#fff;
+            border-radius: 10px;
+            border: 2px solid #eee
+        }
+        .login-body {
+            width: 88%;
+            margin: 6%
+        }
+        .fg-password {
+            float: right !important;
+            text-decoration: none !important;
+        }
+        a.fg-password:hover {
+            color: #333 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="panel-heading text-dark">
+            <h2 class="text-center pb-2 pt-3 border-bottom">登录后台管理系统</h2>
+        </div>
+        <div class="login-body">
+            <form method="put" action="/login">
+                <div class="input-group input-group-lg mb-4 mt-4">
+                    <input type="text" class="form-control" placeholder="请输入用户名" aria-describedby="basic-addon1">
+                </div>
+                <div class="input-group input-group-lg mb-4">
+                    <input type="password" class="form-control" placeholder="请输入密码">
+                </div>
+                <div class="d-grid gap-2 col-12 mx-auto mb-4">
+                    <button class="btn btn-primary btn-lg" type="button">登 录</button>
+                </div>
+            </form>
+            <p>
+                <a class="text-black-50 fg-password" href="javascript:void(0);">忘记密码？</a>
+            </p>
+        </div>
+    </div>
+<script>
+
+</script>
+</body>
+</html>
