@@ -12,7 +12,6 @@ func RegisterWebRoute(r *mux.Router) {
 	//静态资源加载
 	r.PathPrefix("/js/").Handler(http.FileServer(http.Dir("./public")))
 	r.PathPrefix("/css/").Handler(http.FileServer(http.Dir("./public")))
-
 	//auth
 	auth := &controllers.AuthController{}
 	r.HandleFunc("/login", auth.View).Methods("Get").Name("login.view")

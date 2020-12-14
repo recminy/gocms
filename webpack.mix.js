@@ -1,13 +1,11 @@
 const path = require('path');
 const mix = require('laravel-mix');
 
-mix.copy('resources/js/app.js', 'public/js')
-    .copy('resources/js/axios.min.js', 'public/js')
-    .copy('resources/js/bootstrap.min.js', 'public/js');
-mix.copy('resources/css/app.css', 'public/css')
-    .copy('resources/css/bootstrap.min.css', 'public/css');
+mix.copy('resources/css/app.css', 'public/css');
+mix.js('resources/js/login.js', 'public/js')
+    .extract(['axios', 'vuex']);
 //设置manifest路径
-mix.setPublicPath("public/");
+mix.setPublicPath("public");
 mix.webpackConfig({
     resolve: {
         alias: {
@@ -24,6 +22,6 @@ mix.webpackConfig({
         'element-ui': 'ELEMENT'
     },
     output: {
-        chunkFilename: "js/[name]-[chunkhash].js"
+        chunkFilename: "[name]-[chunkhash].js"
     }
 });

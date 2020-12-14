@@ -1,3 +1,5 @@
-let a = 12
+window.axios = require("axios")
 
-console.log(a % 13)
+const app = new Vue({
+    el : '#app'
+})
