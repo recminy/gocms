@@ -6,6 +6,7 @@ import (
 
 func init()  {
 	config.Add("app", config.Map{
+		"port": config.Env("APP_PORT", "80"),
 		"name": config.Env("APP_NAME", "myApp"),
 		"env": config.Env("APP_ENV", "production"),
 		"url": config.Env("APP_URL", "http://localhost"),

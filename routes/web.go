@@ -15,7 +15,7 @@ func RegisterWebRoute(r *mux.Router) {
 	//auth
 	auth := &controllers.AuthController{}
 	r.HandleFunc("/login", auth.View).Methods("Get").Name("login.view")
-	r.HandleFunc("/login", auth.Login).Methods("PATCH").Name("login.submit")
+	r.HandleFunc("/login", auth.Login).Methods("POST").Name("login.submit")
 
 	pc := &controllers.PagesController{}
 	r.NotFoundHandler = http.HandlerFunc(pc.NotFound)

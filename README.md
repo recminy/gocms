@@ -1,2 +1,3 @@
 # gocms
-a simply content management system using go
+基于go语言实现的简单的博客系客系统
+

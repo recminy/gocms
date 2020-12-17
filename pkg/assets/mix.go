@@ -16,13 +16,11 @@ func Manifest() (manifests map[string]string) {
 		fmt.Println(err)
 		logger.Error("mix-manifest.json文件读取失败")
 	}
-	fmt.Println(string(bytes))
 	manifests = make(map[string]string)
 	err = json.Unmarshal(bytes, &manifests)
 	if err != nil {
 		logger.Error("manifest.json解析失败")
 	}
-
 	for k, v := range manifests {
 		if strings.HasSuffix(k, ".js") && k != "manifest.js" {
 			nk := strings.Split(k, "-")

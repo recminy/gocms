@@ -97,7 +97,7 @@
             login() {
                 this.$refs.form.validate(valid => {
                     if (valid) {
-                        axios.patch("/login", {data: this.form}).then(res => {
+                        axios.post("/login", this.form).then(res => {
 
                         }).catch(err => {
                             //TODO

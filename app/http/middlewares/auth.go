@@ -1,5 +1,3 @@
 package middlewares
 
-func Auth()  {
-	
-}
+
