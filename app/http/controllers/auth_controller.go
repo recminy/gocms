@@ -11,6 +11,7 @@ import (
 )
 
 type AuthController struct {
+	BaseController
 }
 
 func (a *AuthController) View(w http.ResponseWriter, r *http.Request)  {
@@ -35,6 +36,15 @@ func (a *AuthController) Login(w http.ResponseWriter, r *http.Request)  {
 		//json参数错误
 		fmt.Println("参数错误！")
 	}
+
+	var user2 clerk.Clerk
+	err2 := json.NewDecoder(r.Body).Decode(user2)
+	if err2 != nil {
+		fmt.Println("Ergs")
+	}
+
+	fmt.Println(user2)
+
 	fmt.Println(user.Username)
 	fmt.Println(user.Password)
 }

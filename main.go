@@ -7,7 +7,6 @@ import (
 	"fmt"
 
 	//"cms/pkg/encrypt"
-	"cms/pkg/logger"
 	//"fmt"
 	"github.com/gorilla/mux"
 	"net/http"

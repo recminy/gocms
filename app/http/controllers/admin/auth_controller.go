@@ -1,16 +1,21 @@
 package admin
 
 import (
-	"cms/app/http/requests"
+	"cms/app/exceptions"
+	"cms/app/http/controllers"
+	"cms/app/models/clerk"
 	"cms/pkg/assets"
 	"cms/pkg/config"
+	"cms/pkg/encrypt"
+	"cms/pkg/model"
+	"cms/pkg/session"
 	"encoding/json"
-	"fmt"
 	"html/template"
 	"net/http"
 )
 
 type AuthController struct {
+	controllers.BaseController
 }
 
 func (a *AuthController) View(w http.ResponseWriter, r *http.Request)  {
@@ -22,12 +27,24 @@ func (a *AuthController) View(w http.ResponseWriter, r *http.Request)  {
 	tmpl.Execute(w, data)
 }
 
-func (a *AuthController) Login(w http.ResponseWriter, r *http.Request)  {
-	//user clerk.Clerk
-	params := requests.FormBody(r)
-	fmt.Println(json.NewDecoder(r.Body))
-	fmt.Println(params)
-	//fmt.Println(user)
-
+func (a *AuthController) Login(w http.ResponseWriter, r *http.Request) {
+	var user clerk.Clerk
+	json.NewDecoder(r.Body).Decode(&user)
+	password := user.Password
+	model.DB.Where("username=?", user.Username).First(&user)
+	if user.ID < 1 {
+		exceptions.NotAcceptableException(w, "用户不存在")
+		return
+	}
+	if user.IsActive < 1 {
+		exceptions.NotAcceptableException(w, "登录失败：用户被禁用")
+		return
+	}
+	if !encrypt.VerifyPassword(password, user.Encrypt, user.Password) {
+		exceptions.NotAcceptableException(w, "用户名密码不正确")
+		return
+	}
+	session.Put("UID", user.ID)
+	exceptions.HttpOk(w, "登录成功")
 }
 

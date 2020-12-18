@@ -6,7 +6,7 @@ import (
 )
 
 type PrimaryKeyField struct {
-	ID uint64 `gorm:"column:id;primaryKey;autoIncrement;not null"`
+	ID uint64 `json:"id" gorm:"column:id;primaryKey;autoIncrement;not null"`
 }
 
 type TimestampField struct {
